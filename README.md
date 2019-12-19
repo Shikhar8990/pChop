@@ -4,7 +4,7 @@ A parallel implementation of Chopper(https://github.com/davidtr1037/chopper).
 
 ## Build
 
-Process similar to Chopper 
+  Process similar to Chopper 
 
 * Build LLVM 3.4 using CMake
   ```
@@ -28,7 +28,7 @@ Process similar to Chopper
   git checkout master
   mkdir pchop_build
   cd pchop_build
-  CXXFLAGS="-fno-rtti" cmake \
+  CXXFLAGS="-fno-rtti" cmake \ 
       -DENABLE_SOLVER_STP=ON \
       -DENABLE_POSIX_RUNTIME=ON \
       -DENABLE_KLEE_UCLIBC=ON \
@@ -42,3 +42,22 @@ Process similar to Chopper
       <PCHOP_ROOT_DIR>
   make
   ```
+  
+## Running pChop
+
+One can run pChop on LLVM bitcode (.bc) files similar to KLEE/Chopper. 
+pChop specific command line arguments.
+*timeOut : serch terminates after timeOut seconds
+*output-dir : Name of the output directory prefix storing the tests. If there are four workers
+              the name of the directories would be output-dir1, output-dir2, outpit-dir3 and
+              output-dir4; output-dir0 belongs to the coordinator.
+*lb : flag to enable load balancing (off by default)
+*phase1Depth : number of states to generate for initial distribution (best to have value same as the number of workers)
+               should be 0 if using only 1 worker
+*phase2Depth : depth at which to terminate execution (should be 0 if doing time bound exploration)
+*searchPolicy : search strategy (BFS, DFS or RAND)
+
+### Sample Command
+```
+mpirun -n 6 /path/to/pchop/bin/klee --libc=uclibc --posix-runtime --timeOut=1800 --inline=memcpy,strlen --skip-functions=_asn1_set_value:1043,asn1_der_decoding_bb --lb -max-memory=4096 --output-dir=DFS_4_137 --phase1Depth=4 --phase2Depth=0 --searchPolicy=DFS test.bc 32
+```
