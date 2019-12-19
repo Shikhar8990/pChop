@@ -64,4 +64,4 @@ mpirun -n 6 /path/to/pchop/bin/klee --libc=uclibc --posix-runtime --timeOut=1800
 
 This command runs a program **test.bc** with a symbolic input of **32** bytes on 4 workers with a time-bound of 30 minutes. The mpirun command requires 6 cores - 4 workers + 1 master + 1 for monitoring and statistics (doesn't do much now).
 
-
+For questions, contact Shikhar - shikhar_singh at utexas dot edu
