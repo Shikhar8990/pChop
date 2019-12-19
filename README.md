@@ -47,15 +47,15 @@ A parallel implementation of Chopper(https://github.com/davidtr1037/chopper).
 
 One can run pChop on LLVM bitcode (.bc) files similar to KLEE/Chopper. 
 pChop specific command line arguments.
-*timeOut : serch terminates after timeOut seconds
-*output-dir : Name of the output directory prefix storing the tests. If there are four workers
+* timeOut : serch terminates after timeOut seconds
+* output-dir : Name of the output directory prefix storing the tests. If there are four workers
               the name of the directories would be output-dir1, output-dir2, outpit-dir3 and
               output-dir4; output-dir0 belongs to the coordinator.
-*lb : flag to enable load balancing (off by default)
-*phase1Depth : number of states to generate for initial distribution (best to have value same as the number of workers)
+* lb : flag to enable load balancing (off by default)
+* phase1Depth : number of states to generate for initial distribution (best to have value same as the number of workers)
                should be 0 if using only 1 worker
-*phase2Depth : depth at which to terminate execution (should be 0 if doing time bound exploration)
-*searchPolicy : search strategy (BFS, DFS or RAND)
+* phase2Depth : depth at which to terminate execution (should be 0 if doing time bound exploration)
+* searchPolicy : search strategy (BFS, DFS or RAND)
 
 ### Sample Command
 ```
